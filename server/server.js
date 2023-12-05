@@ -62,7 +62,7 @@ async function sendConfirmationEmail(email, token) {
     from: "Mr.EhabElhattabchemitry@gmail.com",
     to: email,
     subject: "Confirm your email",
-    text: `Click the following link to confirm your email: http://localhost:3000/confirm/${token}`,
+    text: `Click the following link to confirm your email: http://ehab-elhattab.online/confirm/${token}`,
   };
 
   await transporter.sendMail(mailOptions);
