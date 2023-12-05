@@ -1,0 +1,61 @@
+import axios from "axios";
+import { createContext, useState } from "react";
+
+export const UserContext = createContext();
+
+export const UserContextProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [curyear, setYear] = useState(null);
+  const axiosInstance = axios.create({
+    baseURL: Process.env.REACT_APP_API_URL,
+  });
+
+  const register = async (input) => {
+    return await axiosInstance
+      .post("register", input)
+      .then((res) => setCurrentUser(res.data));
+  };
+
+  const login = async (input) => {
+    return await axiosInstance.post("login", input).then((res) => {
+      setCurrentUser(res.data);
+      return res;
+    });
+  };
+
+  const logout = async () => {
+    await axiosInstance.post("/logout").then((res) => {
+      setCurrentUser(null);
+    });
+  };
+
+  const confirm = async (token) => {
+    return await axiosInstance.get(`confirm/${token}`).then((res) => {
+      setCurrentUser(res.data);
+    });
+  };
+  const currentYear = async (curYear) => {
+    setYear(curYear);
+  };
+  const auth = async () => {
+    return await axiosInstance
+      .post("auth")
+      .then((res) => setCurrentUser(res.data));
+  };
+  auth();
+  return (
+    <UserContext.Provider
+      value={{
+        currentUser,
+        register,
+        login,
+        logout,
+        confirm,
+        currentYear,
+        curyear,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
+};
