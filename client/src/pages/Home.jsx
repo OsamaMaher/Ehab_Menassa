@@ -11,7 +11,7 @@ function Home(year) {
   const getLocation = useLocation();
   const { currentUser } = useContext(UserContext);
   const axiosInstance = axios.create({
-    baseURL: Process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL,
   });
 
   useEffect(() => {
@@ -128,6 +128,7 @@ function Home(year) {
                 })}
               </div>
             </div>
+	    {currentUser?.username ? console.log("found") : console.log("notfound")};
             {currentUser?.username === "admin" && (
               <div>
                 <Link className="btn btn-secondary mb-5" to="/writechapter">

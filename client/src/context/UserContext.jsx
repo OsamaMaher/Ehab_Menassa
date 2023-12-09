@@ -7,7 +7,7 @@ export const UserContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [curyear, setYear] = useState(null);
   const axiosInstance = axios.create({
-    baseURL: Process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL,
   });
 
   const register = async (input) => {

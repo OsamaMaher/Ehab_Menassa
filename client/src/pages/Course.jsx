@@ -11,7 +11,7 @@ const Course = () => {
   const getLocation = useLocation();
   const { currentUser } = useContext(UserContext);
   const axiosInstance = axios.create({
-    baseURL: Process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL,
   });
 
   const cardIndex = getLocation.pathname.split("/")[3];

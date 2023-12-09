@@ -17,7 +17,7 @@ function WriteChapter() {
   });
   const getLocation = useLocation();
   const axiosInstance = axios.create({
-    baseURL: Process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL,
   });
 
   const cardId = getLocation.pathname.split("/")[2];

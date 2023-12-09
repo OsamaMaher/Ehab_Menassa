@@ -38,8 +38,9 @@ app.use(bodyParser.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET_ID,
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    cookie:{maxAge : 8*60*60*1000},
+    saveUninitialized: true,
   })
 );
 app.use(passport.initialize());
@@ -62,7 +63,7 @@ async function sendConfirmationEmail(email, token) {
     from: "Mr.EhabElhattabchemitry@gmail.com",
     to: email,
     subject: "Confirm your email",
-    text: `Click the following link to confirm your email: http://ehab-elhattab.online/confirm/${token}`,
+    text: `Click the following link to confirm your email: https://ehab-elhattab.online/confirm/${token}`,
   };
 
   await transporter.sendMail(mailOptions);
@@ -119,6 +120,16 @@ const chapterSchema = new mongoose.Schema({
 });
 
 const Chapter = mongoose.model("chapter", chapterSchema);
+
+app.get("/test", (req, res) => {
+console.log(mongoose.connection.readyState);
+//res.send(mongoose.connection.readyState);
+});
+app.get("/test1", (req, res) => {
+console.log(mongoose.connection.readyState);
+//res.send(mongoose.connection.readyState);
+});
+
 
 app.post("/register", image.single("imageFile"), async (req, res) => {
   const data = req.body;
@@ -215,11 +226,13 @@ app.post("/auth", (req, res) => {
   }
 });
 
-app.get("/confirm/confirm/:token", async (req, res) => {
+app.get("/confirm/:token", async (req, res) => {
+  console.log("access success");
   const { token } = req.params;
   // Find the user with the matching token in the database
   User.find({ token: token }).then((data) => {
     if (data[0]) {
+      console.log("token aproved");
       User.findByIdAndUpdate(data[0]._id, { token: "1" }).then((data) => {
         res.send(data.username);
       });

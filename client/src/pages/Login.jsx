@@ -25,7 +25,6 @@ function Login() {
     onSubmit: (values) => {
       login(values)
         .then((res) => {
-          console.log(res);
           navigate("/");
         })
         .catch((err) => setError(err.response.data));

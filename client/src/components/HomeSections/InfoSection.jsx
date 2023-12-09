@@ -12,7 +12,6 @@ import {
   faWhatsapp,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import { ConnectLines } from "react-connect-lines";
 
 const ELEMENTS = [
   //   {
@@ -150,7 +149,6 @@ const InfoSection = () => {
           </div>
         </div>
       </div>
-      <ConnectLines elements={ELEMENTS} />
     </>
   );
 };

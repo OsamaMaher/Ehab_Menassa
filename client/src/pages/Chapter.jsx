@@ -9,7 +9,7 @@ function Chapter() {
   const { currentUser } = useContext(UserContext);
   const chapterId = getLocation.pathname.split("/")[3];
   const axiosInstance = axios.create({
-    baseURL: Process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL,
   });
 
   useEffect(() => {

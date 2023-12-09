@@ -15,7 +15,7 @@ function ProfilePage() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+ \   baseURL: Process.env.REACT_APP_API_URL,
   });
 
   const navigate = useNavigate();

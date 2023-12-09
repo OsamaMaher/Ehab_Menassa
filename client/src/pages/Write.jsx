@@ -18,7 +18,7 @@ function Write() {
   const chapterId = getLocation.pathname.split("/")[2];
   const history = useNavigate();
   const axiosInstance = axios.create({
-    baseURL: Process.env.REACT_APP_API_URL,
+    baseURL: process.env.REACT_APP_API_URL,
   });
 
   useEffect(() => {
