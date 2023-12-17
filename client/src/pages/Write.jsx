@@ -55,10 +55,10 @@ function Write() {
     },
     validationSchema: Yup.object({
       title: Yup.string()
-        .max(15, "Must be 15 characters or less")
+     //   .max(100, "Must be 100 characters or less")
         .required("Required"),
       content: Yup.string()
-        .max(100, "Must be 100 characters or less")
+     //   .max(1000, "Must be 1000 characters or less")
         .required("Required"),
     }),
     onSubmit: (values) => {

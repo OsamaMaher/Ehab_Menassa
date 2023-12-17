@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import CourseTop from "../components/CourceTop";
 import VideoPlayer from "../components/VideoPlayer";
 
+const server = process.env.REACT_APP_API_URL;
+
 const Course = () => {
   const [card, setCard] = useState();
   const getLocation = useLocation();

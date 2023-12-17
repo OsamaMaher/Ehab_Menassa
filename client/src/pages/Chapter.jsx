@@ -3,6 +3,8 @@ import { UserContext } from "../context/UserContext";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
+const server = process.env.REACT_APP_API_URL;
+
 function Chapter() {
   const [chapter, setChapter] = useState();
   const getLocation = useLocation();
@@ -37,7 +39,7 @@ function Chapter() {
               <h2>في هذا الباب سنتناول مختلف الماضيع </h2>
             </div>
             <div className="col-lg-3">
-              <img className="img" src="/images/lab.jpg" alt="lab" />
+              <img className="img" src={`${server}images/lab.jpg`} alt="lab" />
             </div>
           </div>
         </div>
@@ -50,8 +52,8 @@ function Chapter() {
                     <img
                       src={
                         card.image !== "undefined"
-                          ? `../../images/${card.image}`
-                          : "../../images/organic.jpg"
+                          ? `${server}images/${card.image}`
+                          : "${server}images/organic.jpg"
                       }
                       className="card-img-top"
                       alt="card"

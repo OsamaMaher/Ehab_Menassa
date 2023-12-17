@@ -9,6 +9,8 @@ import UploadIcon from "@mui/icons-material/Upload";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const server = process.env.REACT_APP_API_URL;
+
 function ProfilePage() {
   // const percentage = 56;
   const { currentUser } = useContext(UserContext);
@@ -92,8 +94,8 @@ function ProfilePage() {
               <img
                 src={
                   currentUser?.image
-                    ? `/images/${currentUser?.image}`
-                    : "/images/DPP.jpeg"
+                    ? `${server}images/${currentUser?.image}`
+                    : "${server}images/DPP.jpeg"
                 }
                 className="w-50 mx-auto my-4 profile-image"
                 alt="Profile avatar"

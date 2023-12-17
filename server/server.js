@@ -12,6 +12,7 @@ import cors from "cors";
 import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
+import MongoStore from "connect-mongo";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,24 +31,36 @@ const saltRounds = 10;
 
 const app = express();
 
+mongoose.connect("mongodb://127.0.0.1/menassaDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 app.use(express.static(__dirname + "/public"));
 app.use("/images", express.static(path.join(__dirname, "images")));
-
+// app.set('trust proxy', 1);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET_ID,
-    resave: true,
-    cookie:{maxAge : 8*60*60*1000},
-    saveUninitialized: true,
+    resave: false,
+    cookie:{maxAge : 180*60*1000},
+    proxy: true,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1/menassaDB",
+      collectionName: "sessions",
+    }),
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors());
-mongoose.connect("mongodb://127.0.0.1/menassaDB");
+ app.use(cors({
+   origin: 'https://ehab-elhattab.online',
+   credentials: true
+}));
 
 async function sendConfirmationEmail(email, token) {
   const transporter = nodemailer.createTransport({
@@ -63,7 +76,7 @@ async function sendConfirmationEmail(email, token) {
     from: "Mr.EhabElhattabchemitry@gmail.com",
     to: email,
     subject: "Confirm your email",
-    text: `Click the following link to confirm your email: https://ehab-elhattab.online/confirm/${token}`,
+    text: `Click the following link to confirm your email: https://api.ehab-elhattab.online/confirm/${token}`,
   };
 
   await transporter.sendMail(mailOptions);
@@ -120,15 +133,6 @@ const chapterSchema = new mongoose.Schema({
 });
 
 const Chapter = mongoose.model("chapter", chapterSchema);
-
-app.get("/test", (req, res) => {
-console.log(mongoose.connection.readyState);
-//res.send(mongoose.connection.readyState);
-});
-app.get("/test1", (req, res) => {
-console.log(mongoose.connection.readyState);
-//res.send(mongoose.connection.readyState);
-});
 
 
 app.post("/register", image.single("imageFile"), async (req, res) => {
@@ -190,7 +194,16 @@ app.post("/login", async (req, res) => {
       User.find({ username: req.user.username }).then((data) => {
         if (data[0]) {
           if (data[0]?.token === "1") {
-            passport.authenticate("local")(req, res, () => {
+            passport.authenticate("local"
+ , (err, user) => {
+              if (!err) {
+                req.session.save(() => {
+                console.log("session saved");
+                res.send(user.usernsme);
+              });
+              }
+            }
+)(req, res, () => {
               res.send(user.username);
             });
           } else {

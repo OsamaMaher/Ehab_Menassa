@@ -44,10 +44,10 @@ function WriteChapter() {
     },
     validationSchema: Yup.object({
       title: Yup.string()
-        .max(15, "Must be 15 characters or less")
+       // .max(100, "Must be 100 characters or less")
         .required("Required"),
       content: Yup.string()
-        .max(100, "Must be 100 characters or less")
+      //  .max(1000, "Must be 1000 characters or less")
         .required("Required"),
     }),
     onSubmit: (values) => {
@@ -66,9 +66,15 @@ function WriteChapter() {
   });
 
   const handleDelete = async () => {
-    await axiosInstance.delete(`delete/${cardId}`).catch((err) => {
-      console.log(err);
-    });
+    var retVal = window.confirm("هل انت متأكد من الحذف ؟");
+    if (retVal === true) {
+      await axiosInstance.delete(`writechapter/delete/${cardId}`).catch((err) => {
+        console.log(err);
+      });
+     return true;
+   } else {
+     return false;
+   }
   };
   return (
     <FormikProvider value={formik}>

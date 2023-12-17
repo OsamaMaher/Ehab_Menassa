@@ -6,6 +6,8 @@ import SvgHome from "../components/SVG-home";
 import InfoSection from "../components/HomeSections/InfoSection";
 import YearSection from "../components/HomeSections/YearSection";
 
+const server = process.env.REACT_APP_API_URL;
+
 function Home(year) {
   const [chapters, setChapters] = useState([]);
   const getLocation = useLocation();
@@ -65,7 +67,9 @@ function Home(year) {
         <div className="container-fluid section">
           <div className="row">
             <div className="col-lg-3">
-              <img className="img" src="/images/Mr_Profile.jpg" alt="lab" />
+              <img className="img" src=
+               {`${server}images/Mr_Profile.jpg`}
+                alt="lab" />
             </div>
             <div className="col-lg-9 section-text">
               <h2>منصة الكيمياء</h2>
@@ -102,8 +106,8 @@ function Home(year) {
                         <img
                           src={
                             chapter.image !== "undefined"
-                              ? `images/${chapter.image}`
-                              : "images/sience.jpg"
+                              ? `${server}images/${chapter.image}`
+                              : `${server}images/sience.jpg`
                           }
                           className="card-img-top"
                           alt="card"
@@ -128,7 +132,6 @@ function Home(year) {
                 })}
               </div>
             </div>
-	    {currentUser?.username ? console.log("found") : console.log("notfound")};
             {currentUser?.username === "admin" && (
               <div>
                 <Link className="btn btn-secondary mb-5" to="/writechapter">

@@ -12,20 +12,19 @@ export const UserContextProvider = ({ children }) => {
 
   const register = async (input) => {
     return await axiosInstance
-      .post("register", input, { withCredentials: true })
+      .post("register", input)
       .then((res) => setCurrentUser(res.data));
   };
 
   const login = async (input) => {
-    return await axiosInstance.post("login", input, { withCredentials: true }
-).then((res) => {
+    return await axiosInstance.post("login", input).then((res) => {
       setCurrentUser(res.data);
       return res;
     });
   };
 
   const logout = async () => {
-    await axiosInstance.post("/logout", null, { withCredentials: true }).then((res) => {
+    await axiosInstance.post("/logout").then((res) => {
       setCurrentUser(null);
     });
   };
@@ -38,19 +37,18 @@ export const UserContextProvider = ({ children }) => {
   const currentYear = async (curYear) => {
     setYear(curYear);
   };
-//  useEffect(() => {
-//    const auth = async () => {
-//      const res = await axiosInstance.post("auth", null,{ withCredentials: true });
-//      setCurrentUser(res.data);
-//    };
-//    auth();
-//  }, []);
-  const auth = async () => {
-    return await axiosInstance
-     .post("auth", null, {withCredentials: true})
-      .then((res) => setCurrentUser(res.data));
-  };
-  auth();
+  useEffect(() => {
+    const auth = async () => {
+      const res = await axiosInstance.post("auth");
+      setCurrentUser(res.data);
+    };
+    auth();
+  }, []);//  const auth = async () => {
+//    return await axiosInstance
+//     .post("auth")
+//      .then((res) => setCurrentUser(res.data));
+//  };
+//  auth();
   return (
     <UserContext.Provider
       value={{
