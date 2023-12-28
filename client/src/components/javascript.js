@@ -12,7 +12,7 @@ function scrollFunction() {
         document.documentElement.scrollTop > 150
       ) {
         document.getElementById("my-navbar").style.cssText =
-          "background: #0d3e10 !important";
+          "background: #2a9dee !important";
       } else {
         document.getElementById("my-navbar").style.cssText =
           "background: transparent !important";

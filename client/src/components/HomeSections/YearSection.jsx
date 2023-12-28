@@ -18,7 +18,7 @@ const YearSection = () => {
           icon={fa1}
           size="7x"
           className="mb-3"
-          style={{ color: "#ffffff" }}
+          style={{ color: "#000000" }}
         />
         <hr />
         <h3 id="id-1">الأول الثانوي</h3>
@@ -33,7 +33,7 @@ const YearSection = () => {
           icon={fa2}
           size="7x"
           className="mb-3"
-          style={{ color: "#ffffff" }}
+          style={{ color: "#000000" }}
         />
         <hr />
         <h3 id="id-1">الثاني الثانوي</h3>
@@ -48,7 +48,7 @@ const YearSection = () => {
           icon={fa3}
           size="7x"
           className="mb-3"
-          style={{ color: "#ffffff" }}
+          style={{ color: "#000000" }}
         />
         <hr />
         <h3 id="id-1">الثالث الثانوي</h3>

@@ -95,12 +95,14 @@ const InfoSection = () => {
       <div className="col-7">
         <div className="row justify-content-center">
           <div className="col col-3 text-center">
-            <FontAwesomeIcon
-              icon={faWhatsapp}
-              size="4x"
-              style={{ color: "#ffffff" }}
-              id="id-whatsapp"
-            />
+            <a href="https://wa.me/201113213938">
+              <FontAwesomeIcon
+                icon={faWhatsapp}
+                size="4x"
+                style={{ color: "#ffffff" }}
+                id="id-whatsapp"
+              />
+            </a>
           </div>
           <div className="col col-3 text-center">
             <a href="https://www.facebook.com/MR.Ehab.elhattab.official">

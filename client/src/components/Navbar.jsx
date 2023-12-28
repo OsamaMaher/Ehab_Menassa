@@ -75,6 +75,14 @@ function Navbar() {
                   الثالث الثانوي
                 </Link>
               </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link active mx-2"
+                  href="https://wa.me/201113213938"
+                >
+                  للتواصل معنا
+                </a>
+              </li>
             </ul>
 
             {currentUser ? (

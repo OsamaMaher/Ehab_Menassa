@@ -38,27 +38,38 @@ function Home(year) {
     <div className="home">
       <div className="svg-section">
         <div className="intro">
-          <h1>Chemistry</h1>
-          <h2>أ/إيهاب حطاب</h2>
-          {currentUser ? (
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <Link className="my-btn" to="/profile">
-                إلى الملف الشخصية
-              </Link>
-              <a className="btn btn-dark" href="#scrollToCources">
-                إلى الكورسات
-              </a>
+          <div className="row w-100 ">
+            <div className="col-lg-6 reveal">
+              <img
+                className="img"
+                src={`${server}images/Mr-pic.PNG`}
+                alt="Mr_Picture"
+              />
             </div>
-          ) : (
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <Link className="my-btn" to="/register">
-                اشترك الان
-              </Link>
-              <Link className="btn btn-dark" to="/login">
-                سجل الدخول
-              </Link>
+            <div className="col-lg-2 intro-left">
+              <h1>Chemistry</h1>
+              <h2>أ/إيهاب حطاب</h2>
+              {currentUser ? (
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <Link className="my-btn" to="/profile">
+                    إلى الملف الشخصية
+                  </Link>
+                  <a className="btn btn-dark" href="#scrollToCources">
+                    إلى الكورسات
+                  </a>
+                </div>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <Link className="my-btn" to="/register">
+                    اشترك الان
+                  </Link>
+                  <Link className="btn btn-dark" to="/login">
+                    سجل الدخول
+                  </Link>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
         <div className="svg-container">
           <SvgHome viewBox={myViewBox} />
@@ -67,12 +78,7 @@ function Home(year) {
       <div className="home-posts">
         <div className="container-fluid section">
           <div className="row">
-            <div className="col-lg-3 reveal">
-              <img className="img" src=
-               {`${server}images/Mr-pic.PNG`}
-                alt="Mr_Picture" />
-            </div>
-            <div className="col-lg-9 section-text">
+            <div className="col-lg-12 section-text">
               <h2>منصة الكيمياء</h2>
               {year.year ? (
                 <h1>{year.year}</h1>
