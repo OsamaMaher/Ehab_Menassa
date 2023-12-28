@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import "./javascript";
 
+const server = process.env.REACT_APP_API_URL;
+
 function Navbar() {
   const { logout } = useContext(UserContext);
   const { currentUser, currentYear } = useContext(UserContext);
@@ -21,7 +23,12 @@ function Navbar() {
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            E.H
+            <img
+              src={`${server}images/logo-white.PNG`}
+              alt="logo"
+              width="70"
+              height="50"
+            />
           </Link>
           <button
             className="navbar-toggler"

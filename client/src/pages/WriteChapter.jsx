@@ -25,10 +25,10 @@ function WriteChapter() {
     const fetchpost = async () => {
       cardId &&
         (await axiosInstance
-          .get(`chapter/${cardId}`)
+          .get(`onechapter/${cardId}`)
           .then((res) => {
-            setCard(res.data[0]);
-            setId(res.data[0]._id);
+            setCard(res.data);
+            setId(res.data._id);
           })
           .catch((err) => console.log(err)));
     };

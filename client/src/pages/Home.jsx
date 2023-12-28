@@ -15,6 +15,7 @@ function Home(year) {
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
   });
+  const myViewBox = "500 0 400.000000 1050.000000";
 
   useEffect(() => {
     if (!year.year) {
@@ -60,16 +61,16 @@ function Home(year) {
           )}
         </div>
         <div className="svg-container">
-          <SvgHome />
+          <SvgHome viewBox={myViewBox} />
         </div>
       </div>
       <div className="home-posts">
         <div className="container-fluid section">
           <div className="row">
-            <div className="col-lg-3">
+            <div className="col-lg-3 reveal">
               <img className="img" src=
-               {`${server}images/Mr_Profile.jpg`}
-                alt="lab" />
+               {`${server}images/Mr-pic.PNG`}
+                alt="Mr_Picture" />
             </div>
             <div className="col-lg-9 section-text">
               <h2>منصة الكيمياء</h2>

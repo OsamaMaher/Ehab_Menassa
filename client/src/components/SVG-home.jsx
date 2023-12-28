@@ -1,14 +1,14 @@
 import React from "react";
 
-function SvgHome() {
+function SvgHome(props) {
   return (
     <div>
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
-        height="100vh"
-        viewBox="0 0"
+        height="170vh"
+        viewBox={props.viewBox || "0 0 1400.000000 1050.000000"}
         preserveAspectRatio="xMidYMid meet"
       >
         <g transform="scale(0.10900,-0.105000)" fill="black" stroke="none">
